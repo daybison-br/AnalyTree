@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_700"
+    android:orientation="vertical"
+    tools:context=".view.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+
+        <ImageButton
+            android:id="@+id/btnBackScreenSeedlingView"
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/green_700"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/back_button_icon" />
+
+        <TextView
+            android:id="@+id/txtTitleMainView"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:maxLength="13"
+            android:text="NOME POPULAR"
+            android:textColor="@color/white"
+            android:textFontWeight="700"
+            android:textSize="24dp" />
+
+        <ImageView
+            android:id="@+id/imgIconViewParcelaView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/seedling_icon" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/shape_container_itens"
+        android:layout_marginTop="25dp"
+        >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textStatusSeedlingView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="18dp"
+                    android:textFontWeight="600"
+                    android:textSize="18dp"
+                    android:textColor="#99B531"
+                    android:text="Status da Planta:" />
+
+                <RadioGroup
+                    android:id="@+id/radioStatusSeedlingsView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <RadioButton
+                        android:id="@+id/checkboxStatusLifeView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:textFontWeight="600"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="18dp"
+                        android:textColor="#99B531"
+                        android:text="Vivo"
+                        android:tag="Vivo"/>
+
+                    <RadioButton
+                        android:id="@+id/checkboxStatusDeathView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="40dp"
+                        android:gravity="center"
+                        android:text="Morto"
+                        android:textColor="#99B531"
+                        android:textFontWeight="600"
+                        android:textSize="18dp"
+                        android:tag="Morto"/>
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/textGroupSeedlingView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="18dp"
+                    android:textFontWeight="600"
+                    android:textSize="18dp"
+                    android:textColor="#99B531"
+                    android:text="Grupo:"/>
+
+                <RadioGroup
+                    android:id="@+id/radioGroupSeedlingsView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <RadioButton
+                        android:id="@+id/checkboxGroupRecobrView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:textFontWeight="600"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="18dp"
+                        android:textColor="#99B531"
+                        android:text="Recobrimento"
+                        android:tag="Recobrimento"/>
+
+                    <RadioButton
+                        android:id="@+id/checkboxGroupDiversityView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="40dp"
+                        android:gravity="center"
+                        android:text="Diversidade"
+                        android:textColor="#99B531"
+                        android:textFontWeight="600"
+                        android:textSize="18dp"
+                        android:tag="Diversidade"/>
+
+                </RadioGroup>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="524dp"
+                    android:orientation="vertical">
+
+
+                    <EditText
+                        android:id="@+id/inputIndividualNumberView"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="18dp"
+                        android:background="@drawable/button_layout"
+                        android:backgroundTint="@color/light_green"
+                        android:ems="10"
+                        android:hint="Numero do indivíduo"
+                        android:inputType="number"
+                        android:paddingLeft="20dp"
+                        android:textColorHint="@color/green_dark" />
+
+                    <EditText
+                        android:id="@+id/inputPopularNameView"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="18dp"
+                        android:background="@drawable/button_layout"
+                        android:backgroundTint="@color/light_green"
+                        android:ems="10"
+                        android:hint="Nome Popular"
+                        android:inputType="text"
+                        android:paddingLeft="20dp"
+                        android:textColorHint="@color/green_dark" />
+
+                    <EditText
+                        android:id="@+id/inputCientificNameView"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="18dp"
+                        android:background="@drawable/button_layout"
+                        android:backgroundTint="@color/light_green"
+                        android:ems="10"
+                        android:hint="Nome Cientifico"
+                        android:inputType="text"
+                        android:paddingLeft="20dp"
+                        android:textColorHint="@color/green_dark"/>
+
+                    <EditText
+                        android:id="@+id/inputHeightSeedlingView"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="18dp"
+                        android:background="@drawable/button_layout"
+                        android:backgroundTint="@color/light_green"
+                        android:ems="10"
+                        android:hint="Altura"
+                        android:inputType="text"
+                        android:paddingLeft="20dp"
+                        android:textColorHint="@color/green_dark" />
+
+                    <EditText
+                        android:id="@+id/inputCAPSeedlingView"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="18dp"
+                        android:background="@drawable/button_layout"
+                        android:backgroundTint="@color/light_green"
+                        android:ems="10"
+                        android:hint="Cap"
+                        android:inputType="text"
+                        android:paddingLeft="20dp"
+                        android:textColorHint="@color/green_dark"/>
+
+
+                    <EditText
+                        android:id="@+id/inputObservationSeedlingView"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="18dp"
+                        android:background="@drawable/button_layout"
+                        android:backgroundTint="@color/light_green"
+                        android:ems="10"
+                        android:gravity="start"
+                        android:hint="Observação..."
+                        android:inputType="textMultiLine"
+                        android:paddingLeft="20dp"
+                        android:textColorHint="@color/green_dark" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btnSaveAltSeedlingView"
+                        android:layout_width="260dp"
+                        android:layout_height="45dp"
+                        android:background="@drawable/button_layout"
+                        android:backgroundTint="@color/brown_700"
+                        android:drawableLeft="@drawable/save_icon"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="70dp"
+                        android:paddingBottom="20px"
+                        android:text="SALVAR"
+                        android:textColor="@color/light_brown"
+                        android:textFontWeight="500"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <Button
+                        android:id="@+id/btnDeleteSeedlingView"
+                        android:layout_width="260dp"
+                        android:layout_height="45dp"
+                        android:background="@drawable/button_layout"
+                        android:backgroundTint="@color/brown_700"
+                        android:drawableLeft="@drawable/trash_icon"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="70dp"
+                        android:paddingBottom="20px"
+                        android:text="EXCLUIR"
+                        android:textColor="@color/light_brown"
+                        android:textFontWeight="500"
+                        android:textSize="18dp"  />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+</LinearLayout>
+

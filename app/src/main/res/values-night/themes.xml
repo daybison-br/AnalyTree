@@ -1,0 +1,11 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.AnalyTree_Plus" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your Dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="fontFamily">sans-serif</item>
+
+    </style>
+
+    <style name="Theme.AnalyTree_Plus" parent="Base.Theme.AnalyTree_Plus" />
+</resources>

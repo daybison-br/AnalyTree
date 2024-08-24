@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/PortionSelectedMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_700"
+    android:orientation="vertical"
+    tools:context=".view.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+
+        <ImageButton
+            android:id="@+id/btnBackScreenPortionSelected"
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/green_700"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/back_button_icon" />
+
+        <TextView
+            android:id="@+id/txtTitlePortionSelected"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:text="ADICIONAR PARCELA"
+            android:textColor="@color/white"
+            android:maxLength="15"
+            android:textFontWeight="700"
+            android:textSize="24dp" />
+
+        <ImageView
+            android:id="@+id/imgIconPortionSelected"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/seedling_icon" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnExportSeedlingPortion"
+            android:layout_width="230dp"
+            android:layout_height="45dp"
+            android:background="@drawable/button_layout"
+            android:backgroundTint="@color/brown_700"
+            android:drawableLeft="@drawable/export_icon"
+            android:drawablePadding="8dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="26dp"
+            android:paddingBottom="20px"
+            android:text="EXPORTAR MUDAS"
+            android:textColor="@color/light_brown"
+            android:textFontWeight="500"
+            android:textSize="18dp" />
+
+        <Button
+            android:id="@+id/btnAddSeedling"
+            android:layout_width="230dp"
+            android:layout_height="45dp"
+            android:background="@drawable/button_layout"
+            android:backgroundTint="@color/brown_700"
+            android:drawableLeft="@drawable/plus_icon"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="26dp"
+            android:paddingBottom="20px"
+            android:layout_marginBottom="10dp"
+            android:text="ADICIONAR MUDA"
+            android:textColor="@color/light_brown"
+            android:textFontWeight="500"
+            android:textSize="18dp" />
+
+        <Button
+            android:id="@+id/btnDeletePortion"
+            android:layout_width="230dp"
+            android:layout_height="45dp"
+            android:background="@drawable/button_layout"
+            android:backgroundTint="@color/brown_700"
+            android:drawableLeft="@drawable/trash_icon"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="26dp"
+            android:paddingBottom="20px"
+            android:text="EXCLUIR PARCELA"
+            android:textColor="@color/light_brown"
+            android:textFontWeight="500"
+            android:textSize="18dp"  />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:background="@drawable/shape_container_itens"
+        android:layout_marginTop="15dp"
+        >
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/swipeRefreshLayoutSeedling"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerViewSeedling"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
+
