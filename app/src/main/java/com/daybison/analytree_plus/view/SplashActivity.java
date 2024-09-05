@@ -20,7 +20,7 @@ public class SplashActivity extends AppCompatActivity {
     public static final int TIME_OUT_SPLASH = 3000;
     DatabaseHelper db;
     TextView txtVersionAPP;
-    String VERSION_APP = "v.1.0.10";
+    String VERSION_APP = "v.1.0.11";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

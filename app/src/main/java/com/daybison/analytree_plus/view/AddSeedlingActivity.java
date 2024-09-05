@@ -112,12 +112,12 @@ public class AddSeedlingActivity extends AppCompatActivity {
 
 
                     if(statusValue.equals("Morto")){
-                        groupValue = "Diversidade";
+                        groupValue = " ";
                         popularName = "Muda Morta";
-                        cientificName = "Muda Morta";
+                        cientificName = " ";
                         heightSeedling = " ";
                         CAPSeedling = " ";
-                        observationSeedling = "Muda Morta";
+                        observationSeedling = " ";
                     } else {
                         groupValue = (String) selectedGroupRadioButton.getTag();
                         popularName = inputPopularName.getText().toString().trim().toUpperCase();

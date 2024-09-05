@@ -189,7 +189,7 @@ public class ViewSeedlingActivity extends AppCompatActivity {
                     newSeedling.setId(SEEDLING_ID);
                     newSeedling.setStatusSeedling(statusValue);
                     newSeedling.setGroupSeedling(groupValue);
-                    newSeedling.setIndividualNumber(inputPopularNameView.getText().toString().toUpperCase());
+                    newSeedling.setIndividualNumber(inputIndividualNumberView.getText().toString().toUpperCase());
                     newSeedling.setPopularName(inputPopularNameView.getText().toString().toUpperCase());
                     newSeedling.setPopularscientific(inputCientificNameView.getText().toString().toUpperCase());
                     newSeedling.setPortions_id(SEEDLING_PORTION_ID);
