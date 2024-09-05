@@ -1,0 +1,2 @@
+ANALYTREE
+É um aplicativo android onde pode ser inserido dados de analise de mudas, é um aplicativo bem completo onde é possivel exportar as anotações por um arquivo xlsx (excel), tornando assim mais praticas as anotações em campo.
