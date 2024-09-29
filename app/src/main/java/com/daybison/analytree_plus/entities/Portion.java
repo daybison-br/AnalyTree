@@ -20,6 +20,7 @@ public class Portion {
     @NonNull
     private String id;
     private String name;
+    private String formFactor;
     private Boolean deleted;
     private String created_in;
     private int qtySeedling;
@@ -30,8 +31,9 @@ public class Portion {
 
     }
 
-    public Portion(String name, Boolean deleted) {
+    public Portion(String name, String formFactor, Boolean deleted) {
         this.id = UUID.randomUUID().toString();
+        this.formFactor = formFactor;
         this.deleted = deleted;
         this.created_in = FormatDataUtils.getFormattedCreatedIn();
         this.name = name;
@@ -79,6 +81,14 @@ public class Portion {
         this.qtySeedling = qtySeedling;
     }
 
+    public String getFormFactor() {
+        return formFactor;
+    }
+
+    public void setFormFactor(String formFactor) {
+        this.formFactor = formFactor;
+    }
+
     public Integer qtySeedlingsCount(Context context, String portion_id) {
         SeedlingController seedlingController = new SeedlingController(context);
 
@@ -90,11 +100,10 @@ public class Portion {
         return "Portion{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
+                ", formFactor='" + formFactor + '\'' +
                 ", deleted=" + deleted +
                 ", created_in='" + created_in + '\'' +
                 ", qtySeedling=" + qtySeedling +
                 '}';
     }
-
-
 }

@@ -34,6 +34,7 @@ import com.daybison.analytree_plus.controller.PortionController;
 import com.daybison.analytree_plus.controller.SeedlingController;
 import com.daybison.analytree_plus.databinding.ActivityPortionSelectedBinding;
 import com.daybison.analytree_plus.entities.Portion;
+import com.daybison.analytree_plus.entities.PortionAndSeedlings;
 import com.daybison.analytree_plus.entities.Seedling;
 
 import org.apache.poi.ss.usermodel.Row;
@@ -88,6 +89,7 @@ public class PortionSelectedActivity extends AppCompatActivity {
 
             String portionsId = getIntent().getStringExtra("PORTION_ID");
             seedlingController = new SeedlingController(PortionSelectedActivity.this);
+
             seedlingList = seedlingController.getAllSeedlingsByPortionId(portionsId);
 
             RecyclerView recyclerViewSeedling = binding.RecyclerViewSeedling;
@@ -139,8 +141,12 @@ public class PortionSelectedActivity extends AppCompatActivity {
                             .show();
 
 
+
+
                 }
             });
+
+
 
             btnBackScreenPortionSelected.setOnClickListener(v -> finish());
             btnAddSeedling.setOnClickListener(v -> {
@@ -187,6 +193,7 @@ public class PortionSelectedActivity extends AppCompatActivity {
             Log.e("PortionSelectedActivity", "Exception in onCreate: " + e.getMessage());
         }
     }
+
 
     public void refreshDataSeedling(String portions_id) {
         seedlingList.clear();
@@ -242,6 +249,7 @@ public class PortionSelectedActivity extends AppCompatActivity {
 
     private void writeXlsxToUri(Uri uri, ArrayList<Seedling> seedlings) {
         try (OutputStream outputStream = getContentResolver().openOutputStream(uri)) {
+            String formFactorValue = portionSelected.getFormFactor();
             if (outputStream != null) {
                 Workbook workbook = new XSSFWorkbook();
                 Sheet sheet = workbook.createSheet("Seedlings");
@@ -258,11 +266,14 @@ public class PortionSelectedActivity extends AppCompatActivity {
                 header.createCell(7).setCellValue("Cap");
                 header.createCell(8).setCellValue("Observação");
                 header.createCell(9).setCellValue("Data Registro");
+                header.createCell(10).setCellValue("Volume M³");
 
                 // Adicionar dados dos seedlings
                 int rowNum = 1;
                 for (Seedling seedling : seedlings) {
                     Row row = sheet.createRow(rowNum++);
+                    double volumNumber = PortionAndSeedlings.volumeCalculation(seedling.getCap(), seedling.getHeight(), formFactorValue);
+
                     row.createCell(0).setCellValue(portionSelected.getName());
                     row.createCell(1).setCellValue(seedling.getStatusSeedling());
                     row.createCell(2).setCellValue(seedling.getGroupSeedling());
@@ -273,6 +284,7 @@ public class PortionSelectedActivity extends AppCompatActivity {
                     row.createCell(7).setCellValue(seedling.getCap());
                     row.createCell(8).setCellValue(seedling.getObservation());
                     row.createCell(9).setCellValue(seedling.getCreated_in());
+                    row.createCell(10).setCellValue(volumNumber); //Calculo do volume de madeira
                 }
 
                 workbook.write(outputStream);

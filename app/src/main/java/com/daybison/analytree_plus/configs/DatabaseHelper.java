@@ -20,7 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     private static final String DB_NAME = "analytree";
-    private static final int DB_VERSION = 2;
+    private static final int DB_VERSION = 3;
 
     Cursor cursor;
     SQLiteDatabase db;
@@ -30,6 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "CREATE TABLE portions (\n" +
                     "    id TEXT PRIMARY KEY NOT NULL,\n" +
                     "    name TEXT,\n" +
+                    "    formFactor TEXT,\n" +
                     "    deleted INTEGER,\n" +
                     "    created_in TEXT,\n" +
                     "    qtySeedling INTEGER\n" +
@@ -65,7 +66,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        if (oldVersion < 3) {
+            db.execSQL("ALTER TABLE portions ADD COLUMN formFactor TEXT");
+        }
     }
 
 
@@ -92,6 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 // Obtém os índices das colunas
                 int idIndex = cursor.getColumnIndex("id");
                 int nameIndex = cursor.getColumnIndex("name");
+                int formFactorIndex = cursor.getColumnIndex("formFactor");
                 int deletedIndex = cursor.getColumnIndex("deleted");
                 int createdInIndex = cursor.getColumnIndex("created_in");
                 int qtySeedlingIndex = cursor.getColumnIndex("qtySeedling");
@@ -102,6 +106,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     // Preenche os campos da instância Portion com os dados do Cursor
                     portion.setId(cursor.getString(idIndex));
                     portion.setName(cursor.getString(nameIndex));
+                    portion.setFormFactor(cursor.getString(formFactorIndex));
                     portion.setDeleted(cursor.getInt(deletedIndex) == 1); // Converte INTEGER para Boolean
                     portion.setCreated_in(cursor.getString(createdInIndex));
                     portion.setQtySeedling(cursor.getInt(qtySeedlingIndex));
@@ -183,7 +188,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         try {
             // Consulta SQL para recuperar todos os seedlings
-            String querySql = "SELECT P.name as nameportion, S.statusSeedling, S.groupSeedling, S.individualNumber, S.popularName, S.popularScientific, S.height, S.cap, S.observation, s.created_in FROM SEEDLINGS S\n" +
+            String querySql = "SELECT P.name as nameportion, P.formFactor, S.statusSeedling, S.groupSeedling, S.individualNumber, S.popularName, S.popularScientific, S.height, S.cap, S.observation, s.created_in FROM SEEDLINGS S\n" +
                     "JOIN PORTIONS P ON S.portions_id = P.id\n" +
                     "ORDER BY P.name desc";
 
@@ -200,6 +205,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                     // Obtém os índices das colunas
                     int nameportionIndex = cursor.getColumnIndex("nameportion");
+                    int formFactorIndex = cursor.getColumnIndex("formFactor");
                     int statusSeedlingIndex = cursor.getColumnIndex("statusSeedling");
                     int groupSeedlingIndex = cursor.getColumnIndex("groupSeedling");
                     int individualNumberIndex = cursor.getColumnIndex("individualNumber");
@@ -218,6 +224,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                         // Preenche os campos da instância Seedling com os dados do Cursor
                         data.setNamePortion(cursor.getString(nameportionIndex));
+                        data.setFormFactor(cursor.getString(formFactorIndex));
                         data.setStatusSeedling(cursor.getString(statusSeedlingIndex));
                         data.setGroupSeedling(cursor.getString(groupSeedlingIndex));
                         data.setIndividualNumber(cursor.getString(individualNumberIndex));

@@ -218,7 +218,7 @@
                 android:background="@drawable/button_layout"
                 android:backgroundTint="@color/light_green"
                 android:ems="10"
-                android:hint="Altura"
+                android:hint="Altura (Metros)"
                 android:inputType="text"
                 android:paddingLeft="20dp"
                 android:textColorHint="@color/green_dark" />
@@ -233,7 +233,7 @@
                 android:background="@drawable/button_layout"
                 android:backgroundTint="@color/light_green"
                 android:ems="10"
-                android:hint="Cap"
+                android:hint="Cap (Cm)"
                 android:inputType="text"
                 android:paddingLeft="20dp"
                 android:textColorHint="@color/green_dark"/>

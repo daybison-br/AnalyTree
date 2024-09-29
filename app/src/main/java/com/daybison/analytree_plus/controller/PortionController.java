@@ -20,6 +20,7 @@ public class PortionController extends DatabaseHelper {
         ContentValues values = new ContentValues();
         values.put("id", portion.getId()); // Inserir o ID
         values.put("name", portion.getName()); // Inserir o nome
+        values.put("formFactor", portion.getFormFactor()); // Inserir o fator de forma
         values.put("deleted", portion.getDeleted() ? 1 : 0); // Inserir o status booleano
         values.put("created_in", portion.getCreated_in()); // Inserir a data formatada
         values.put("qtySeedling", portion.getQtySeedling());

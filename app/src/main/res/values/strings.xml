@@ -3,4 +3,5 @@
     <string name="name_button_save_portion">SALVAR</string>
     <string name="name_portion_input">Nome da Parcela</string>
     <string name="VersionAPP">VersionAPP</string>
+    <string name="fator_de_forma">Fator de Forma</string>
 </resources>

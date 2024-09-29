@@ -59,7 +59,7 @@
 
         <Button
             android:id="@+id/btnExportSeedlingPortion"
-            android:layout_width="230dp"
+            android:layout_width="250dp"
             android:layout_height="45dp"
             android:background="@drawable/button_layout"
             android:backgroundTint="@color/brown_700"
@@ -67,33 +67,33 @@
             android:drawablePadding="8dp"
             android:layout_marginBottom="10dp"
             android:gravity="center_vertical"
-            android:paddingLeft="26dp"
+            android:paddingLeft="18dp"
             android:paddingBottom="20px"
-            android:text="EXPORTAR MUDAS"
+            android:text="EXPORTAR INDIVIDUOS"
             android:textColor="@color/light_brown"
             android:textFontWeight="500"
             android:textSize="18dp" />
 
         <Button
             android:id="@+id/btnAddSeedling"
-            android:layout_width="230dp"
+            android:layout_width="250dp"
             android:layout_height="45dp"
             android:background="@drawable/button_layout"
             android:backgroundTint="@color/brown_700"
             android:drawableLeft="@drawable/plus_icon"
             android:drawablePadding="8dp"
             android:gravity="center_vertical"
-            android:paddingLeft="26dp"
+            android:paddingLeft="20dp"
             android:paddingBottom="20px"
             android:layout_marginBottom="10dp"
-            android:text="ADICIONAR MUDA"
+            android:text="ADICIONAR INDIVIDUO"
             android:textColor="@color/light_brown"
             android:textFontWeight="500"
             android:textSize="18dp" />
 
         <Button
             android:id="@+id/btnDeletePortion"
-            android:layout_width="230dp"
+            android:layout_width="250dp"
             android:layout_height="45dp"
             android:background="@drawable/button_layout"
             android:backgroundTint="@color/brown_700"

@@ -24,6 +24,7 @@ public class AddPortionActivity extends AppCompatActivity {
     ImageButton btnBackScreenPortion;
     Button btnSavePortion;
     EditText inputNamePortion;
+    EditText inputFormFactorPortion;
 
     PortionController portionController;
 
@@ -44,6 +45,7 @@ public class AddPortionActivity extends AppCompatActivity {
         btnBackScreenPortion = findViewById(R.id.btnBackScreenPortion);
         btnSavePortion = findViewById(R.id.btnSavePortion);
         inputNamePortion = findViewById(R.id.inputNamePortion);
+        inputFormFactorPortion = findViewById(R.id.inputFormFactorPortion);
 
         btnBackScreenPortion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,17 +58,19 @@ public class AddPortionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String name = inputNamePortion.getText().toString().trim();
+                String formFactor = inputFormFactorPortion.getText().toString().trim();
                 if (name.isEmpty()) {
                     // Exibir mensagem de erro se o campo estiver vazio
                     Toast.makeText(AddPortionActivity.this, "Os campos devem ser preenchidos!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                Portion newPortion = new Portion(name.toUpperCase(), false);
+                Portion newPortion = new Portion(name.toUpperCase(),formFactor.toUpperCase(), false);
 
                 String nameCaptalize = name.toUpperCase();
                 Toast.makeText(AddPortionActivity.this,nameCaptalize+" salva com sucesso!", Toast.LENGTH_SHORT).show();
                 inputNamePortion.setText("");
+                inputFormFactorPortion.setText("");
 
                 // Usar uma thread separada para a operação de inserção
                 Executors.newSingleThreadExecutor().execute(() -> {

@@ -11,6 +11,7 @@ public class PortionAndSeedlings {
     private String capSeedling;
     private String observationSeedling;
     private String createdInSeedling;
+    private String formFactor;
 
     public PortionAndSeedlings() {
     }
@@ -41,6 +42,14 @@ public class PortionAndSeedlings {
 
     public String getIndividualNumber() {
         return individualNumber;
+    }
+
+    public String getFormFactor() {
+        return formFactor;
+    }
+
+    public void setFormFactor(String formFactor) {
+        this.formFactor = formFactor;
     }
 
     public void setIndividualNumber(String individualNumber) {
@@ -95,6 +104,14 @@ public class PortionAndSeedlings {
         this.createdInSeedling = createdInSeedling;
     }
 
+    public static Double volumeCalculation(String CAP, String height ,String formFactor){
+        double calcDAP = Math.pow(Double.parseDouble(CAP),2);
+        double basalAreaCalculation = (Math.PI * calcDAP)/40000;
+        double volumeCalculation = (basalAreaCalculation * Double.parseDouble(height) ) * Double.parseDouble(formFactor);
+
+        return volumeCalculation;
+    }
+
     @Override
     public String toString() {
         return "PortionAndSeedlings{" +
@@ -108,6 +125,7 @@ public class PortionAndSeedlings {
                 ", capSeedling='" + capSeedling + '\'' +
                 ", observationSeedling='" + observationSeedling + '\'' +
                 ", createdInSeedling='" + createdInSeedling + '\'' +
+                ", formFactor='" + formFactor + '\'' +
                 '}';
     }
 }

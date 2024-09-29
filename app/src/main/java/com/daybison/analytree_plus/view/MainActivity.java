@@ -233,11 +233,17 @@ public class MainActivity extends AppCompatActivity {
                 header.createCell(7).setCellValue("Cap");
                 header.createCell(8).setCellValue("Observação");
                 header.createCell(9).setCellValue("Data Registro");
+                header.createCell(10).setCellValue("Volume M³");
+                header.createCell(11).setCellValue("Fator Forma");
 
                 // Adicionar dados dos seedlings
                 int rowNum = 1;
                 for (PortionAndSeedlings seedlingPortion : portionAndSeedlings) {
                     Row row = sheet.createRow(rowNum++);
+                    double volumNumber = PortionAndSeedlings.volumeCalculation(seedlingPortion.getCapSeedling(), seedlingPortion.getHeightSeedling(), seedlingPortion.getFormFactor());
+
+                    Log.d("formfactor", seedlingPortion.getFormFactor());
+
                     row.createCell(0).setCellValue(seedlingPortion.getNamePortion());
                     row.createCell(1).setCellValue(seedlingPortion.getStatusSeedling());
                     row.createCell(2).setCellValue(seedlingPortion.getGroupSeedling());
@@ -248,6 +254,8 @@ public class MainActivity extends AppCompatActivity {
                     row.createCell(7).setCellValue(seedlingPortion.getCapSeedling());
                     row.createCell(8).setCellValue(seedlingPortion.getObservationSeedling());
                     row.createCell(9).setCellValue(seedlingPortion.getCreatedInSeedling());
+                    row.createCell(10).setCellValue(volumNumber);
+                    row.createCell(11).setCellValue(seedlingPortion.getFormFactor());
                 }
 
                 workbook.write(outputStream);

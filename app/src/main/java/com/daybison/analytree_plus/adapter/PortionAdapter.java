@@ -39,7 +39,7 @@ public class PortionAdapter extends RecyclerView.Adapter<PortionAdapter.PortionV
 
        // holder.binding.iconItemList.setBackgroundResource(portionList.get(position).getImgPortion); Caso queira que o icone seja dinamico
         holder.binding.portionNameView.setText(portionList.get(position).getName().toUpperCase());
-        holder.binding.qtyNumberItens.setText(String.valueOf(portionList.get(position).qtySeedlingsCount(this.context, portionList.get(position).getId())+ " Mudas"));
+        holder.binding.qtyNumberItens.setText(String.valueOf(portionList.get(position).qtySeedlingsCount(this.context, portionList.get(position).getId())+ " Individuos"));
 
 
         // Adiciona o listener de clique

@@ -2,6 +2,7 @@ package com.daybison.analytree_plus.view;
 
 import android.content.Intent;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,7 +21,6 @@ public class SplashActivity extends AppCompatActivity {
     public static final int TIME_OUT_SPLASH = 3000;
     DatabaseHelper db;
     TextView txtVersionAPP;
-    String VERSION_APP = "v.1.0.11";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +37,22 @@ public class SplashActivity extends AppCompatActivity {
         txtVersionAPP = findViewById(R.id.txtVersionAPP);
 
 
+        // Obter a versionName do build.gradle.kts
+        String versionName = getAppVersion();
 
-        txtVersionAPP.setText(VERSION_APP);
+        // Exibir a versão no TextView
+        txtVersionAPP.setText("v." + versionName);
+    }
+
+    private String getAppVersion() {
+        String versionName = "N/A";
+        try {
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            versionName = packageInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return versionName;
     }
 
     private void setSplashScreenDuration() {
