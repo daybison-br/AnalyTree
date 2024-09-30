@@ -112,6 +112,13 @@ public class PortionAndSeedlings {
         return volumeCalculation;
     }
 
+    public static Double checkStatusPorcetage (){
+
+
+
+        return null;
+    }
+
     @Override
     public String toString() {
         return "PortionAndSeedlings{" +

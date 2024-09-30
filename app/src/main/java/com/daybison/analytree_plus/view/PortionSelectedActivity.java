@@ -63,6 +63,8 @@ public class PortionSelectedActivity extends AppCompatActivity {
 
     ImageButton btnBackScreenPortionSelected;
     TextView txtTitlePortionSelected;
+    TextView textLifeStatus;
+    TextView textDeadStatus;
     Button btnAddSeedling;
     Button btnExportSeedlingPortion;
     Button btnDeletePortion;
@@ -82,6 +84,7 @@ public class PortionSelectedActivity extends AppCompatActivity {
 
             swipeRefreshLayoutSeedling = findViewById(R.id.swipeRefreshLayoutSeedling);
             swipeRefreshLayoutSeedling.setOnRefreshListener(() -> {
+
                 String portionsIdRefresh = getIntent().getStringExtra("PORTION_ID");
                 refreshDataSeedling(portionsIdRefresh);
             });
@@ -122,6 +125,9 @@ public class PortionSelectedActivity extends AppCompatActivity {
             btnAddSeedling = findViewById(R.id.btnAddSeedling);
             btnDeletePortion = findViewById(R.id.btnDeletePortion);
             btnExportSeedlingPortion = findViewById(R.id.btnExportSeedlingPortion);
+
+            textLifeStatus = findViewById(R.id.textLifeStatus);
+            textDeadStatus = findViewById(R.id.textDeadStatus);
 
             btnDeletePortion.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -189,9 +195,42 @@ public class PortionSelectedActivity extends AppCompatActivity {
 
             checkAndRequestPermissions();
 
+
         } catch (Exception e) {
             Log.e("PortionSelectedActivity", "Exception in onCreate: " + e.getMessage());
         }
+    }
+
+    public void checkStatusPorcetage(ArrayList<Seedling> seedlingsArray) {
+        int countLifeIndividualStatus = 0;
+        int countDeathIndividual = 0;
+
+        // Contar status das mudas
+        for (Seedling seedling : seedlingsArray) {
+            if (seedling.getStatusSeedling().equalsIgnoreCase("vivo")) {
+                countLifeIndividualStatus++;
+            } else {
+                countDeathIndividual++;
+            }
+        }
+
+        // Calcular total de itens
+        int totalItens = countLifeIndividualStatus + countDeathIndividual;
+
+        // Verificar se o total não é zero para evitar divisão por zero
+        double porcentageLife = 0;
+        double porcentageDeath = 0;
+
+        if (totalItens > 0) {
+            porcentageLife = (countLifeIndividualStatus / (double) totalItens) * 100; // Cast para double
+            porcentageDeath = (countDeathIndividual / (double) totalItens) * 100; // Cast para double
+        }
+
+
+        textLifeStatus.setText(String.format("%.1f%%", porcentageLife));
+        textDeadStatus.setText(String.format("%.1f%%", porcentageDeath));
+
+
     }
 
 
@@ -199,6 +238,7 @@ public class PortionSelectedActivity extends AppCompatActivity {
         seedlingList.clear();
         seedlingList.addAll(seedlingController.getAllSeedlingsByPortionId(portions_id));
         seedlingAdapter.notifyDataSetChanged();
+        checkStatusPorcetage(seedlingList);
         swipeRefreshLayoutSeedling.setRefreshing(false);
     }
 
@@ -242,7 +282,7 @@ public class PortionSelectedActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-        intent.putExtra(Intent.EXTRA_TITLE, "seedlings.xlsx");
+        intent.putExtra(Intent.EXTRA_TITLE, "individual.xlsx");
         startActivityForResult(intent, REQUEST_CODE_CREATE_FILE);
     }
 
@@ -252,7 +292,7 @@ public class PortionSelectedActivity extends AppCompatActivity {
             String formFactorValue = portionSelected.getFormFactor();
             if (outputStream != null) {
                 Workbook workbook = new XSSFWorkbook();
-                Sheet sheet = workbook.createSheet("Seedlings");
+                Sheet sheet = workbook.createSheet("Individual");
 
                 // Criar o cabeçalho
                 Row header = sheet.createRow(0);
