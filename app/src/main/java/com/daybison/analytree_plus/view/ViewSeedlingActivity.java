@@ -22,6 +22,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.daybison.analytree_plus.R;
 import com.daybison.analytree_plus.controller.SeedlingController;
+import com.daybison.analytree_plus.entities.PortionAndSeedlings;
 import com.daybison.analytree_plus.entities.Seedling;
 
 public class ViewSeedlingActivity extends AppCompatActivity {
@@ -41,6 +42,9 @@ public class ViewSeedlingActivity extends AppCompatActivity {
     EditText inputHeightSeedlingView;
     EditText inputCAPSeedlingView;
     EditText inputObservationSeedlingView;
+
+    EditText inputFormFactorPortionView;
+    EditText inputVolumCalcView;
 
     Button btnSaveAltSeedlingView;
     Button btnDeleteSeedlingView;
@@ -71,6 +75,8 @@ public class ViewSeedlingActivity extends AppCompatActivity {
         String SEEDLING_CAP = getIntent().getStringExtra("SEEDLING_CAP");
         String SEEDLING_OBSERVATION = getIntent().getStringExtra("SEEDLING_OBSERVATION");
         String SEEDLING_PORTION_ID = getIntent().getStringExtra("SEEDLING_PORTION_ID");
+        String SEEDLING_VOLUM_CALC = getIntent().getStringExtra("SEEDLING_VOLUM_CALC");
+        String PORTION_FORM_FACTOR = getIntent().getStringExtra("PORTION_FORM_FACTOR");
 
         txtTitleMainView = findViewById(R.id.txtTitleMainView);
         txtTitleMainView.setText(SEEDLING_POPULAR.toUpperCase());
@@ -99,6 +105,12 @@ public class ViewSeedlingActivity extends AppCompatActivity {
         radioGroupSeedlingsView = findViewById(R.id.radioGroupSeedlingsView);
         checkboxGroupRecobrView = findViewById(R.id.checkboxGroupRecobrView);
         checkboxGroupDiversityView = findViewById(R.id.checkboxGroupDiversityView);
+
+        inputVolumCalcView = findViewById(R.id.inputVolumCalcView);
+        inputVolumCalcView.setText("Volume: " + SEEDLING_VOLUM_CALC);
+
+        inputFormFactorPortionView = findViewById(R.id.inputFormFactorPortionView);
+        inputFormFactorPortionView.setText("Fator de Forma: " + PORTION_FORM_FACTOR);
 
 
         if (SEEDLING_STATUS.equals("Vivo")) {

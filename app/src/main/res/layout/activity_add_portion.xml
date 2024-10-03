@@ -93,7 +93,7 @@
                 android:backgroundTint="@color/light_green"
                 android:ems="10"
                 android:hint="@string/fator_de_forma"
-                android:inputType="text"
+                android:inputType="numberDecimal"
                 android:paddingLeft="20dp"
                 android:textColorHint="@color/green_dark" />
         </LinearLayout>

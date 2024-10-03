@@ -219,7 +219,7 @@
                 android:backgroundTint="@color/light_green"
                 android:ems="10"
                 android:hint="Altura (Metros)"
-                android:inputType="text"
+                android:inputType="numberDecimal"
                 android:paddingLeft="20dp"
                 android:textColorHint="@color/green_dark" />
 
@@ -234,7 +234,7 @@
                 android:backgroundTint="@color/light_green"
                 android:ems="10"
                 android:hint="Cap (Cm)"
-                android:inputType="text"
+                android:inputType="numberDecimal"
                 android:paddingLeft="20dp"
                 android:textColorHint="@color/green_dark"/>
 

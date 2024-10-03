@@ -112,6 +112,21 @@ public class PortionSelectedActivity extends AppCompatActivity {
                 intent.putExtra("SEEDLING_OBSERVATION", String.valueOf(seedling.getObservation()));
                 intent.putExtra("SEEDLING_CREATE_IN", String.valueOf(seedling.getCreated_in()));
                 intent.putExtra("SEEDLING_PORTION_ID", getIntent().getStringExtra("PORTION_ID"));
+
+
+                String formFactorValue = portionSelected.getFormFactor() != null ? portionSelected.getFormFactor() : "N/A";
+
+                double volumNumber = PortionAndSeedlings.volumeCalculation(
+                        seedling.getCap(),
+                        seedling.getHeight(),
+                        formFactorValue
+                );
+
+                intent.putExtra("SEEDLING_VOLUM_CALC", String.valueOf(volumNumber));
+                intent.putExtra("PORTION_FORM_FACTOR", String.valueOf(formFactorValue));
+
+                Log.d("testeValue", String.valueOf(volumNumber));
+
                 startActivity(intent);
             });
             recyclerViewSeedling.setAdapter(seedlingAdapter);
@@ -289,7 +304,9 @@ public class PortionSelectedActivity extends AppCompatActivity {
 
     private void writeXlsxToUri(Uri uri, ArrayList<Seedling> seedlings) {
         try (OutputStream outputStream = getContentResolver().openOutputStream(uri)) {
-            String formFactorValue = portionSelected.getFormFactor();
+            String formFactorValue = portionSelected.getFormFactor() != null ? portionSelected.getFormFactor() : "N/A";
+
+
             if (outputStream != null) {
                 Workbook workbook = new XSSFWorkbook();
                 Sheet sheet = workbook.createSheet("Individual");
@@ -312,8 +329,18 @@ public class PortionSelectedActivity extends AppCompatActivity {
                 int rowNum = 1;
                 for (Seedling seedling : seedlings) {
                     Row row = sheet.createRow(rowNum++);
-                    double volumNumber = PortionAndSeedlings.volumeCalculation(seedling.getCap(), seedling.getHeight(), formFactorValue);
 
+                    Log.d("TESTEIMF", String.valueOf(seedling.getCap()));
+                    Log.d("TESTEIMF", String.valueOf(seedling.getHeight()));
+                    Log.d("TESTEIMF", String.valueOf(formFactorValue));
+
+                    double volumNumber = PortionAndSeedlings.volumeCalculation(
+                            seedling.getCap(),
+                            seedling.getHeight(),
+                            formFactorValue
+                    );
+
+                    Log.d("TESTEIMF", String.valueOf("formFactor: "+volumNumber));
                     row.createCell(0).setCellValue(portionSelected.getName());
                     row.createCell(1).setCellValue(seedling.getStatusSeedling());
                     row.createCell(2).setCellValue(seedling.getGroupSeedling());
@@ -325,6 +352,7 @@ public class PortionSelectedActivity extends AppCompatActivity {
                     row.createCell(8).setCellValue(seedling.getObservation());
                     row.createCell(9).setCellValue(seedling.getCreated_in());
                     row.createCell(10).setCellValue(volumNumber); //Calculo do volume de madeira
+
                 }
 
                 workbook.write(outputStream);
@@ -336,6 +364,7 @@ public class PortionSelectedActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             Log.e("ExportExcel", "Erro ao exportar Excel: " + e.getMessage());
+            Log.e("ExportExcel", "Error:", e);
             Toast.makeText(this, "Erro ao exportar Excel", Toast.LENGTH_SHORT).show();
         }
     }

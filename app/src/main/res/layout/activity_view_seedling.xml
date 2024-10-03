@@ -239,6 +239,39 @@
                         android:paddingLeft="20dp"
                         android:textColorHint="@color/green_dark"/>
 
+                    <EditText
+                        android:id="@+id/inputFormFactorPortionView"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="18dp"
+                        android:background="@drawable/button_layout"
+                        android:backgroundTint="#E6F2BB"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:hint="Fator de Forma"
+                        android:inputType="text"
+                        android:paddingLeft="20dp"
+                        android:textColorHint="@color/green_dark"/>
+
+                    <EditText
+                        android:id="@+id/inputVolumCalcView"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="18dp"
+                        android:background="@drawable/button_layout"
+                        android:backgroundTint="#E6F2BB"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:hint="Volume"
+                        android:inputType="text"
+                        android:paddingLeft="20dp"
+                        android:textColorHint="@color/green_dark"/>
+
+
 
                     <EditText
                         android:id="@+id/inputObservationSeedlingView"

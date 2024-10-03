@@ -240,9 +240,14 @@ public class MainActivity extends AppCompatActivity {
                 int rowNum = 1;
                 for (PortionAndSeedlings seedlingPortion : portionAndSeedlings) {
                     Row row = sheet.createRow(rowNum++);
-                    double volumNumber = PortionAndSeedlings.volumeCalculation(seedlingPortion.getCapSeedling(), seedlingPortion.getHeightSeedling(), seedlingPortion.getFormFactor());
 
-                    Log.d("formfactor", seedlingPortion.getFormFactor());
+                    double volumNumber = PortionAndSeedlings.volumeCalculation(
+                            seedlingPortion.getCapSeedling(),
+                            seedlingPortion.getHeightSeedling(),
+                            seedlingPortion.getFormFactor()
+                    );
+
+
 
                     row.createCell(0).setCellValue(seedlingPortion.getNamePortion());
                     row.createCell(1).setCellValue(seedlingPortion.getStatusSeedling());

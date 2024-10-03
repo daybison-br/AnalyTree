@@ -105,19 +105,22 @@ public class PortionAndSeedlings {
     }
 
     public static Double volumeCalculation(String CAP, String height ,String formFactor){
-        double calcDAP = Math.pow(Double.parseDouble(CAP),2);
+
+        if(CAP == null || height == null || formFactor == null){
+            return 0.0;
+        }
+
+        if(CAP.isEmpty() || height.isEmpty() || formFactor.isEmpty()){
+            return 0.0;
+        }
+
+        double calcDAP = Math.pow(Double.parseDouble(CAP.replace(",", ".")),2);
         double basalAreaCalculation = (Math.PI * calcDAP)/40000;
-        double volumeCalculation = (basalAreaCalculation * Double.parseDouble(height) ) * Double.parseDouble(formFactor);
+        double volumeCalculation = (basalAreaCalculation * Double.parseDouble(height.replace(",", ".")) ) * Double.parseDouble(formFactor.replace(",", "."));
 
         return volumeCalculation;
     }
 
-    public static Double checkStatusPorcetage (){
-
-
-
-        return null;
-    }
 
     @Override
     public String toString() {
