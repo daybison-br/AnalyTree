@@ -45,9 +45,15 @@ public class SeedlingController extends DatabaseHelper {
         this.updateSeedling(seedling);
     }
 
+    public Seedling getSeedlingById(String id){
+        return this.findSeedlingById(id);
+    }
+
     public void delete(Seedling seedling) {
         this.deleteSeedling(seedling);
     }
+
+
 
 
 }

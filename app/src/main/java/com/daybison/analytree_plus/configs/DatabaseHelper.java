@@ -78,55 +78,58 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Portion findPortionById(String id) {
         Portion portion = null;
-        Cursor cursor = null;
 
-        try {
-            // Consulta SQL corrigida
-            String querySql = "SELECT * FROM portions WHERE id = ?";
+        // Consulta SQL
+        String querySql = "SELECT * FROM portions WHERE id = ?";
 
-            // Executa a consulta
-            cursor = db.rawQuery(querySql, new String[]{id});
+        // Usando try-with-resources para garantir que o Cursor seja fechado automaticamente
+        try (Cursor cursor = db.rawQuery(querySql, new String[]{id})) {
 
-            // Verifica se há resultados e itera sobre eles
+            // Verifica se há resultados
             if (cursor != null && cursor.moveToFirst()) {
                 // Cria uma nova instância de Portion
                 portion = new Portion();
 
-                // Obtém os índices das colunas
-                int idIndex = cursor.getColumnIndex("id");
-                int nameIndex = cursor.getColumnIndex("name");
-                int formFactorIndex = cursor.getColumnIndex("formFactor");
-                int deletedIndex = cursor.getColumnIndex("deleted");
-                int createdInIndex = cursor.getColumnIndex("created_in");
-                int qtySeedlingIndex = cursor.getColumnIndex("qtySeedling");
-
-                // Verifica se os índices são válidos
-                if (idIndex != -1 && nameIndex != -1 && deletedIndex != -1 &&
-                        createdInIndex != -1 && qtySeedlingIndex != -1) {
-                    // Preenche os campos da instância Portion com os dados do Cursor
-                    portion.setId(cursor.getString(idIndex));
-                    portion.setName(cursor.getString(nameIndex));
-                    portion.setFormFactor(cursor.getString(formFactorIndex));
-                    portion.setDeleted(cursor.getInt(deletedIndex) == 1); // Converte INTEGER para Boolean
-                    portion.setCreated_in(cursor.getString(createdInIndex));
-                    portion.setQtySeedling(cursor.getInt(qtySeedlingIndex));
-                } else {
-                    Log.w("DatabaseWarning", "One or more column indices are invalid.");
-                }
+                // Usando getColumnIndexOrThrow para garantir que a coluna exista
+                portion.setId(cursor.getString(cursor.getColumnIndexOrThrow("id")));
+                portion.setName(cursor.getString(cursor.getColumnIndexOrThrow("name")));
+                portion.setFormFactor(cursor.getString(cursor.getColumnIndexOrThrow("formFactor")));
+                portion.setDeleted(cursor.getInt(cursor.getColumnIndexOrThrow("deleted")) == 1); // Converte INTEGER para Boolean
+                portion.setCreated_in(cursor.getString(cursor.getColumnIndexOrThrow("created_in")));
+                portion.setQtySeedling(cursor.getInt(cursor.getColumnIndexOrThrow("qtySeedling")));
             }
         } catch (Exception e) {
-            Log.e("DatabaseError", "Error retrieving data: " + e.getMessage());
-        } finally {
-            // Garante que o cursor seja fechado para liberar recursos
-            if (cursor != null) {
-                cursor.close();
-            }
+            Log.e("DatabaseError", "Error retrieving portion by id: " + e.getMessage(), e);
         }
 
         return portion;
     }
 
 
+    public void updatePortion(Portion portion) {
+        // Cria um ContentValues para armazenar os novos valores
+        ContentValues values = new ContentValues();
+        values.put("id", portion.getId());
+        values.put("name", portion.getName());
+        values.put("formFactor", portion.getFormFactor());
+        values.put("deleted", portion.getDeleted());
+        values.put("created_in", portion.getCreated_in());
+        values.put("qtySeedling", portion.getQtySeedling());
+
+        try {
+            // Executa a atualização com base no ID do Seedling
+            int rowsAffected = db.update("portions", values, "id = ?", new String[]{portion.getId()});
+
+            if (rowsAffected > 0) {
+
+                Log.i("DatabaseInfo", "Seedling updated successfully.");
+            } else {
+                Log.w("DatabaseWarning", "No Seedling found with the given ID.");
+            }
+        } catch (Exception e) {
+            Log.e("DatabaseError", "Error updating data: " + e.getMessage());
+        }
+    }
 
     public ArrayList<Portion> findAllPortion() {
         ArrayList<Portion> allPortions = new ArrayList<>();
@@ -466,5 +469,41 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.close();
         }
     }
+
+    public Seedling findSeedlingById(String id) {
+        Seedling seedling = null;
+
+        // Consulta SQL
+        String querySql = "SELECT * FROM seedlings WHERE id = ?";
+
+        // Usando try-with-resources para garantir que o Cursor seja fechado automaticamente
+        try (Cursor cursor = db.rawQuery(querySql, new String[]{id})) {
+
+            // Verifica se há resultados
+            if (cursor != null && cursor.moveToFirst()) {
+                // Cria uma nova instância de Portion
+                seedling = new Seedling();
+
+                // Usando getColumnIndexOrThrow para garantir que a coluna exista
+                seedling.setId(cursor.getString(cursor.getColumnIndexOrThrow("id")));
+                seedling.setIndividualNumber(cursor.getString(cursor.getColumnIndexOrThrow("individualNumber")));
+                seedling.setPopularName(cursor.getString(cursor.getColumnIndexOrThrow("popularName")));
+                seedling.setPopularscientific(cursor.getString(cursor.getColumnIndexOrThrow("popularScientific")));
+                seedling.setHeight(cursor.getString(cursor.getColumnIndexOrThrow("height")));
+                seedling.setCap(cursor.getString(cursor.getColumnIndexOrThrow("cap")));
+                seedling.setStatusSeedling(cursor.getString(cursor.getColumnIndexOrThrow("statusSeedling")));
+                seedling.setGroupSeedling(cursor.getString(cursor.getColumnIndexOrThrow("groupSeedling")));
+                seedling.setObservation(cursor.getString(cursor.getColumnIndexOrThrow("observation")));
+                seedling.setPortions_id(cursor.getString(cursor.getColumnIndexOrThrow("portions_id")));
+                seedling.setCreated_in(cursor.getString(cursor.getColumnIndexOrThrow("created_in")));
+
+            }
+        } catch (Exception e) {
+            Log.e("DatabaseError", "Error retrieving seedling by id: " + e.getMessage(), e);
+        }
+
+        return seedling;
+    }
+
 
 }

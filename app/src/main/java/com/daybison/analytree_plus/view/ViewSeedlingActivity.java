@@ -21,12 +21,15 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.daybison.analytree_plus.R;
+import com.daybison.analytree_plus.controller.PortionController;
 import com.daybison.analytree_plus.controller.SeedlingController;
+import com.daybison.analytree_plus.entities.Portion;
 import com.daybison.analytree_plus.entities.PortionAndSeedlings;
 import com.daybison.analytree_plus.entities.Seedling;
 
 public class ViewSeedlingActivity extends AppCompatActivity {
     SeedlingController seedlingController;
+    PortionController portionController;
     TextView txtTitleMainView;
     ImageButton btnBackScreenSeedlingView;
     RadioGroup radioStatusSeedlingsView;
@@ -62,7 +65,12 @@ public class ViewSeedlingActivity extends AppCompatActivity {
             return insets;
         });
 
+
+
         seedlingController = new SeedlingController(this);
+        portionController = new PortionController(this);
+
+
 
         String SEEDLING_ID = getIntent().getStringExtra("SEEDLING_ID");
         String SEEDLING_STATUS = getIntent().getStringExtra("SEEDLING_STATUS");
@@ -75,8 +83,12 @@ public class ViewSeedlingActivity extends AppCompatActivity {
         String SEEDLING_CAP = getIntent().getStringExtra("SEEDLING_CAP");
         String SEEDLING_OBSERVATION = getIntent().getStringExtra("SEEDLING_OBSERVATION");
         String SEEDLING_PORTION_ID = getIntent().getStringExtra("SEEDLING_PORTION_ID");
-        String SEEDLING_VOLUM_CALC = getIntent().getStringExtra("SEEDLING_VOLUM_CALC");
-        String PORTION_FORM_FACTOR = getIntent().getStringExtra("PORTION_FORM_FACTOR");
+
+        Portion portionSelected = portionController.getPortionsById(SEEDLING_PORTION_ID);
+        Seedling seedlingSelected = seedlingController.getSeedlingById(SEEDLING_ID);
+
+        Log.d("TESTESEEDLING", String.valueOf(seedlingSelected));
+        Log.d("TESTESEEDLING", String.valueOf(portionSelected));
 
         txtTitleMainView = findViewById(R.id.txtTitleMainView);
         txtTitleMainView.setText(SEEDLING_POPULAR.toUpperCase());
@@ -106,11 +118,20 @@ public class ViewSeedlingActivity extends AppCompatActivity {
         checkboxGroupRecobrView = findViewById(R.id.checkboxGroupRecobrView);
         checkboxGroupDiversityView = findViewById(R.id.checkboxGroupDiversityView);
 
+
+        String formFactorValue = portionSelected.getFormFactor() != null ? portionSelected.getFormFactor() : "N/A";
+
+        double volumNumber = PortionAndSeedlings.volumeCalculation(
+                seedlingSelected.getCap(),
+                seedlingSelected.getHeight(),
+                formFactorValue
+        );
+
         inputVolumCalcView = findViewById(R.id.inputVolumCalcView);
-        inputVolumCalcView.setText("Volume: " + SEEDLING_VOLUM_CALC);
+        inputVolumCalcView.setText("Volume: " + volumNumber);
 
         inputFormFactorPortionView = findViewById(R.id.inputFormFactorPortionView);
-        inputFormFactorPortionView.setText("Fator de Forma: " + PORTION_FORM_FACTOR);
+        inputFormFactorPortionView.setText("Fator de Forma: " + formFactorValue);
 
 
         if (SEEDLING_STATUS.equals("Vivo")) {
@@ -217,6 +238,7 @@ public class ViewSeedlingActivity extends AppCompatActivity {
                     finish();
                 } catch (Exception e) {
 
+                    Log.e("updateSeedling", "Error: ", e );
                 }
             }
         });

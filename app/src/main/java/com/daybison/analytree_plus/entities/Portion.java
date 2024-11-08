@@ -39,6 +39,15 @@ public class Portion {
         this.name = name;
     }
 
+    public Portion(@NonNull String id, String name, String formFactor, Boolean deleted, String created_in, int qtySeedling) {
+        this.id = id;
+        this.name = name;
+        this.formFactor = formFactor;
+        this.deleted = deleted;
+        this.created_in = created_in;
+        this.qtySeedling = qtySeedling;
+    }
+
     @NonNull
     public String getId() {
         return id;

@@ -39,4 +39,8 @@ public class PortionController extends DatabaseHelper {
     public void delete(String id_portion){
         super.deletePortionAndSeedlings(id_portion);
     }
+
+    public void update(Portion portion){
+        super.updatePortion(portion);
+    }
 }

@@ -114,10 +114,10 @@ public class PortionAndSeedlings {
             return 0.0;
         }
 
-        double calcDAP = Math.pow(Double.parseDouble(CAP.replace(",", ".")),2);
-        double basalAreaCalculation = (Math.PI * calcDAP)/40000;
-        double volumeCalculation = (basalAreaCalculation * Double.parseDouble(height.replace(",", ".")) ) * Double.parseDouble(formFactor.replace(",", "."));
 
+        double calcDAP = Double.parseDouble(CAP.replace(",", "."))/Math.PI;
+        double basalAreaCalculation = (Math.PI * (Math.pow(calcDAP,2)))/4000;
+        double volumeCalculation = (basalAreaCalculation * Double.parseDouble(height.replace(",", ".")) ) * Double.parseDouble(formFactor.replace(",", "."));
         return volumeCalculation;
     }
 

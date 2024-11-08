@@ -36,6 +36,9 @@
             android:name=".view.MainActivity"
             android:exported="false" />
         <activity
+            android:name=".view.EditPortionActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.SplashActivity"
             android:exported="true">
             <intent-filter>

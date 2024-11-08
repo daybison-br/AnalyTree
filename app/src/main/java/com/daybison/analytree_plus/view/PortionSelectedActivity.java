@@ -68,6 +68,7 @@ public class PortionSelectedActivity extends AppCompatActivity {
     Button btnAddSeedling;
     Button btnExportSeedlingPortion;
     Button btnDeletePortion;
+    Button btnEditPortion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,6 +140,7 @@ public class PortionSelectedActivity extends AppCompatActivity {
             txtTitlePortionSelected = findViewById(R.id.txtTitlePortionSelected);
             btnAddSeedling = findViewById(R.id.btnAddSeedling);
             btnDeletePortion = findViewById(R.id.btnDeletePortion);
+            btnEditPortion = findViewById(R.id.btnEditPortion);
             btnExportSeedlingPortion = findViewById(R.id.btnExportSeedlingPortion);
 
             textLifeStatus = findViewById(R.id.textLifeStatus);
@@ -162,6 +164,27 @@ public class PortionSelectedActivity extends AppCompatActivity {
                             .show();
 
 
+
+
+                }
+            });
+
+            btnEditPortion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    try {
+
+                        Intent MainScreen = new Intent(PortionSelectedActivity.this, EditPortionActivity.class);
+                        MainScreen.putExtra("PORTION_ID", portionId);
+                        startActivity(MainScreen);
+
+                        Toast.makeText(PortionSelectedActivity.this, "Edição Habilitada.", Toast.LENGTH_SHORT).show();
+
+                    }catch (Exception e){
+                        Log.e("EditPortion", "Error: ", e);
+                        Toast.makeText(PortionSelectedActivity.this, "Ops. Erro ao tentar editar.", Toast.LENGTH_SHORT).show();
+                    }
 
 
                 }
@@ -324,15 +347,12 @@ public class PortionSelectedActivity extends AppCompatActivity {
                 header.createCell(8).setCellValue("Observação");
                 header.createCell(9).setCellValue("Data Registro");
                 header.createCell(10).setCellValue("Volume M³");
+                header.createCell(11).setCellValue("Fator de Forma");
 
                 // Adicionar dados dos seedlings
                 int rowNum = 1;
                 for (Seedling seedling : seedlings) {
                     Row row = sheet.createRow(rowNum++);
-
-                    Log.d("TESTEIMF", String.valueOf(seedling.getCap()));
-                    Log.d("TESTEIMF", String.valueOf(seedling.getHeight()));
-                    Log.d("TESTEIMF", String.valueOf(formFactorValue));
 
                     double volumNumber = PortionAndSeedlings.volumeCalculation(
                             seedling.getCap(),
@@ -352,6 +372,7 @@ public class PortionSelectedActivity extends AppCompatActivity {
                     row.createCell(8).setCellValue(seedling.getObservation());
                     row.createCell(9).setCellValue(seedling.getCreated_in());
                     row.createCell(10).setCellValue(volumNumber); //Calculo do volume de madeira
+                    row.createCell(11).setCellValue(portionSelected.getFormFactor());
 
                 }
 
