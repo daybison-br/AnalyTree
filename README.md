@@ -188,16 +188,12 @@ AnalyTree/
 ├── app/
 └── README.md
 ```
-
-Depois, remova os comentários abaixo e mantenha os caminhos correspondentes às suas imagens:
-
-<!--
 <p align="center">
   <img src="docs/images/parcelas.png" width="30%" alt="Tela de parcelas">
   <img src="docs/images/individuos.png" width="30%" alt="Tela de indivíduos">
   <img src="docs/images/formula.png" width="30%" alt="Cadastro de planta">
 </p>
--->
+
 
 ---
 
