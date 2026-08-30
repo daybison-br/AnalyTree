@@ -174,20 +174,6 @@ O aplicativo possui telas voltadas ao fluxo de coleta em campo, incluindo:
 
 ### Screenshots
 
-Para exibir as telas no GitHub, crie uma pasta chamada `docs/images` no repositório e adicione as imagens do aplicativo.
-
-Exemplo:
-
-```text
-AnalyTree/
-├── docs/
-│   └── images/
-│       ├── parcelas.png
-│       ├── individuos.png
-│       └── cadastro-planta.png
-├── app/
-└── README.md
-```
 <p align="center">
   <img src="docs/images/parcelas.png" width="30%" alt="Tela de parcelas">
   <img src="docs/images/individuos.png" width="30%" alt="Tela de indivíduos">
